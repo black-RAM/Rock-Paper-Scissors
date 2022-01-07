@@ -2,24 +2,51 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rock Paper Scissors</title>
-  <style>
-    body{
-      background-color: #0c0c22;
-    }
-  </style>
 </head>
-<body>
+<body style="background-color: #0c0c22;">
   <script>
-    function computerPlay () {
-      options = [
+    "use strict";
+    function computerPlay() {
+      const options = [
         "Rock",
         "Paper",
-        "Scissors",
+        "Scissors"
       ];
       return options[Math.floor(Math.random() * 3)];
     }
+    const computerSelection = computerPlay();
+    let playerSelection = prompt("Type Rock, Paper or Scissors play or type Q to quit", "");
+    playerSelection = playerSelection[0].toUpperCase() + playerSelection.slice(1).toLowerCase();
+    
+    function playRound (cChoice, pChoice){
+      if (pChoice == "Rock" || pChoice == "Scissors" || pChoice == "Paper" || pChoice == "Q"){
+        if (pChoice !== "Q"){
+          if (pChoice === "Rock" && cChoice === "Scissors") {
+            return "I chose Scissors and you chose Rock so you win!";
+          } else {
+            return "I chose Scissors and you chose Rock so I win, sorry.";
+          }
+          if (pChoise === "Paper" && cChoice === "Rock") {
+            return "I chose paper and you chose rock so you win!"
+          } else {
+            return "I chose rock and you chose paper so I win, sorry."
+          }
+          if (pChoice === "Scissor" && cChoice === "Paper") {
+            return "I chose paper and you chose scissor so you win!"
+          } else {
+            return "I chose scissor and you chose paper so I win, sorry."
+          }
+        } else {
+          return "Thanks for playing! Goodbye"
+        }
+      } else {
+        pChoice = prompt(`Please type "Rock", "Paper" or "Scissors" to play not "${pChoice}"`);
+        return playRound(cChoice, pChoice);
+      }
+    }
+    alert(playRound(computerSelection, playerSelection));
+    alert("Refresh the page to play again :-)")
   </script>
 </body>
 </html>
