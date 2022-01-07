@@ -17,30 +17,33 @@
     }
     const computerSelection = computerPlay();
     let playerSelection = prompt("Type Rock, Paper or Scissors play or type Q to quit", "");
-    playerSelection = playerSelection[0].toUpperCase() + playerSelection.slice(1).toLowerCase();
+    playerSelection = (playerSelection)? playerSelection[0].toUpperCase() + playerSelection.slice(1).toLowerCase() : playerSelection;
     
     function playRound (cChoice, pChoice){
       if (pChoice == "Rock" || pChoice == "Scissors" || pChoice == "Paper" || pChoice == "Q"){
         if (pChoice !== "Q"){
           if (pChoice === "Rock" && cChoice === "Scissors") {
             return "I chose Scissors and you chose Rock so you win!";
-          } else {
-            return "I chose Scissors and you chose Rock so I win, sorry.";
+          } else if (pChoice === "Scissors" && cChoice === "Rock") {
+            return "I chose Rock and you chose Scissors so I win, sorry.";
           }
-          if (pChoise === "Paper" && cChoice === "Rock") {
+          if (pChoice === "Paper" && cChoice === "Rock") {
             return "I chose paper and you chose rock so you win!"
-          } else {
+          } else if (pchoice === "Paper" && cChoice === "Rock") {
             return "I chose rock and you chose paper so I win, sorry."
           }
           if (pChoice === "Scissor" && cChoice === "Paper") {
             return "I chose paper and you chose scissor so you win!"
-          } else {
+          } else if (pChoice === "Paper" && cChoice === "Scissor"){
             return "I chose scissor and you chose paper so I win, sorry."
           }
         } else {
           return "Thanks for playing! Goodbye"
         }
       } else {
+        if (pChoice === ""){
+          return "Thanks for playing! Goodbye"
+        }
         pChoice = prompt(`Please type "Rock", "Paper" or "Scissors" to play not "${pChoice}"`);
         return playRound(cChoice, pChoice);
       }
