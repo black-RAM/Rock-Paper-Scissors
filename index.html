@@ -18,7 +18,7 @@
 
     function playRound (){
       const computerChoice = computerPlay();
-      const playerChoice = prompt("Type Rock, Paper or Scissors play or type Q to quit", "");
+      const playerChoice = prompt('Type Rock, Paper or Scissors play or type "Q" to quit', "");
       const output = validate(playerChoice, computerChoice);
       return output;
     }
@@ -69,6 +69,7 @@
         `You win with ${playerPoints} while the computer had ${computerPoints} points.`
         : `The computer won with ${computerPoints} while you had ${playerPoints} points.`
     }
+    alert("Let's play 5 rounds of rock paper scissors")
     alert(game());
     alert("Thanks for playing! Refresh the page to play again :-)")
   </script>
