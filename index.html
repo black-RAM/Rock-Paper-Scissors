@@ -15,11 +15,15 @@
       ];
       return options[Math.floor(Math.random() * 3)];
     }
-    const computerSelection = computerPlay();
-    let playerSelection = prompt("Type Rock, Paper or Scissors play or type Q to quit", "");
-    playerSelection = (playerSelection)? playerSelection[0].toUpperCase() + playerSelection.slice(1).toLowerCase() : playerSelection;
-    console.log(playerSelection)
-    function playRound (cChoice, pChoice){
+
+    function playRound (){
+      const computerChoice = computerPlay();
+      let playerChoice = prompt("Type Rock, Paper or Scissors play or type Q to quit", "");
+      playerChoice =(playerChoice) ? playerChoice[0].toUpperCase() + playerChoice.slice(1).toLowerCase() : playerChoice;
+      let outPut = validate(playerChoice, computerChoice);
+      return outPut;
+    }
+    function validate(pChoice, cChoice){
       if (pChoice == "Rock" || pChoice == "Scissors" || pChoice == "Paper" || pChoice == "Q"){
         if (pChoice !== "Q"){
           if (pChoice === "Rock" && cChoice === "Scissors") {
@@ -41,20 +45,20 @@
           return "Thanks for playing! Goodbye"
         }
       } else {
-        if (pChoice == ""){
+        if (pChoice == "" || pChoice == null){
           return "Thanks for playing! Goodbye"
         }
         pChoice = prompt(`Please type "Rock", "Paper" or "Scissors" to play not "${pChoice}"`);
-        return playRound(cChoice, pChoice);
+        return validate(pChoice, cChoice);
       }
     }
-    
-    function game(cChoice, pChoice){
+    console.log(playRound())
+    function game(){
       let playerPoints = 0;
       let computerPoints = 0;
 
       for (let i = 0; i < 5; i++) {
-        let result = playRound(cChoice, pChoice);
+        let result = playRound();
         if (result.includes("I win")) {
           computerPoints++;
         } else if (result.includes("you win")) {
@@ -68,7 +72,7 @@
         `You win with ${playerPoints}`
         : `The computer won with ${computerPoints}`
     }
-    alert(game(computerSelection, playerSelection));
+    alert(game());
  // alert("Refresh the page to play again :-)");
   </script>
 </body>
