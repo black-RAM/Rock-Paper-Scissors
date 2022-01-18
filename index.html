@@ -18,12 +18,12 @@
 
     function playRound (){
       const computerChoice = computerPlay();
-      let playerChoice = prompt("Type Rock, Paper or Scissors play or type Q to quit", "");
-      playerChoice =(playerChoice) ? playerChoice[0].toUpperCase() + playerChoice.slice(1).toLowerCase() : playerChoice;
-      let outPut = validate(playerChoice, computerChoice);
-      return outPut;
+      const playerChoice = prompt("Type Rock, Paper or Scissors play or type Q to quit", "");
+      const output = validate(playerChoice, computerChoice);
+      return output;
     }
     function validate(pChoice, cChoice){
+      pChoice =(pChoice) ? pChoice[0].toUpperCase() + pChoice.slice(1).toLowerCase() : pChoice;
       if (pChoice == "Rock" || pChoice == "Scissors" || pChoice == "Paper" || pChoice == "Q"){
         if (pChoice !== "Q"){
           if (pChoice === "Rock" && cChoice === "Scissors") {
@@ -32,9 +32,9 @@
             return "I chose Rock and you chose Scissors so I win, sorry.";
           }
           if (pChoice === "Paper" && cChoice === "Rock") {
-            return "I chose paper and you chose rock so you win!"
-          } else if (pChoice === "Paper" && cChoice === "Rock") {
-            return "I chose rock and you chose paper so I win, sorry."
+            return "I chose rock and you chose paper so you win!"
+          } else if (pChoice === "Rock" && cChoice === "Paper") {
+            return "I chose paper and you chose rock so I win, sorry."
           }
           if (pChoice === "Scissor" && cChoice === "Paper") {
             return "I chose paper and you chose scissor so you win!"
@@ -45,35 +45,32 @@
           return "Thanks for playing! Goodbye"
         }
       } else {
-        if (pChoice == "" || pChoice == null){
-          return "Thanks for playing! Goodbye"
-        }
         pChoice = prompt(`Please type "Rock", "Paper" or "Scissors" to play not "${pChoice}"`);
         return validate(pChoice, cChoice);
       }
     }
-    console.log(playRound())
+
     function game(){
       let playerPoints = 0;
       let computerPoints = 0;
 
       for (let i = 0; i < 5; i++) {
         let result = playRound();
+        if (result === "Thanks for playing! Goodbye") return result;
+        alert(result);
         if (result.includes("I win")) {
           computerPoints++;
         } else if (result.includes("you win")) {
           playerPoints++;
-        } else {
-          return "You quit the game"
         }
       }
       
       return  (playerPoints > computerPoints) ? 
-        `You win with ${playerPoints}`
-        : `The computer won with ${computerPoints}`
+        `You win with ${playerPoints} while the computer had ${computerPoints} points.`
+        : `The computer won with ${computerPoints} while you had ${playerPoints} points.`
     }
     alert(game());
- // alert("Refresh the page to play again :-)");
+    alert("Thanks for playing! Refresh the page to play again :-)")
   </script>
 </body>
 </html>
