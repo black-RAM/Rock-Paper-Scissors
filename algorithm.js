@@ -3,26 +3,37 @@ function playRound () {
   // computer choice
   const options = ["rock", "paper", "scissors"];
   const cChoice = options[Math.floor(Math.random() * 3)];
-  // get player choice and validate
+  // get player choice and validate it
   let pChoice = prompt('Type "rock", "paper", or "scissors" to play, or "q" to quit.');
   pChoice = pChoice.toLocaleLowerCase();
-  if([...options, "q"].includes(pChoice) === false) {
-    alert("Please enter a valid choice.")
+
+  function validate (input) {
+    const optionsRegex = /rock|paper|scissors|q/i;
+    const valid = optionsRegex.test(input);
+    if(valid) {
+      return input.match(optionsRegex).join(""); 
+      // only return the part of input string that matches. Useful if user gave a sentence.
+    } else {
+      let newInput = prompt("Please enter a valid choice.").toLocaleLowerCase();
+      return validate(newInput); // recursion to make sure that new input is indeed valid
+    }
   }
+
+  pChoice = validate(pChoice);
   // early return if player quit
   if(pChoice === "q") {return "Thanks for playing!"} else {
     // determine if player won or lost
     // logic: rock > scissors, scissors > paper, paper > rock
     if(
-      (pChoice.includes("rock") && cChoice === "scissors") ||
-      (pChoice.includes("scissors") && cChoice === "paper") ||
-      (pChoice.includes("paper") && cChoice === "rock")
+      (pChoice === "rock" && cChoice === "scissors") ||
+      (pChoice === "scissors" && cChoice === "paper") ||
+      (pChoice === "paper" && cChoice === "rock")
     ) {
       return `You win! ${pChoice} beats ${cChoice}`;
     } else if (
-      (pChoice.includes("scissors") && cChoice === "rock") ||
-      (pChoice.includes("paper") && cChoice === "scissors") ||
-      (pChoice.includes("rock") && cChoice === "paper")
+      (pChoice === "scissors" && cChoice === "rock") ||
+      (pChoice === "paper" && cChoice === "scissors") ||
+      (pChoice === "rock" && cChoice === "paper")
     ) {
       return `You lost. ${cChoice} beats ${pChoice}. Sorry.`;
     }
@@ -36,8 +47,7 @@ function game() {
   // initialise player wins and computre wins to 0
   let pWins = 0;
   let cWins = 0;
-  // round number (to debug the loop)
-  let roundNum = 0;
+  // while neither player wins or computer wins are over five
   while(!(pWins >= 5 || cWins >= 5)) {
     // call playRound and store its return value in result
     let result = playRound();
@@ -49,11 +59,14 @@ function game() {
     } else {
       // otherwise if result begins with string "you win", increment player wins
       if(result.startsWith("You win")) {
-        pWins++;
+        ++pWins;
+        /* prefixed the increment operator to increment and return player wins, 
+          which will be alerted at the end of each iteration of the loop.
+          I made this change when I realised the wins would update late. */
       } 
       // or else, if it starts with the string "you lose" increment computer wins
       else if (result.startsWith("You lost")) {
-        cWins++;
+        ++cWins;
       }
     }
     // finally, display the result
@@ -65,7 +78,7 @@ function game() {
   } else if (pWins < cWins) {
     alert(`Oops, You lose! The computer won ${cWins} rounds while you won ${pWins} rounds.`)
   } else {
-    alert("Well, it's a tie.")
+    alert("Well, it's a tie. Reload the page for the tie-breaker!")
   }
 }
  
