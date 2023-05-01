@@ -37,32 +37,20 @@ main{
   gap: 2rem;
 }
 main > div {
-  flex-basis: 40vw;
+  flex: 350px;
 }
 
 /* Start of styling for div where the player makes a pick */
 #players {
   display: flex;
-  width: 100%;
+  gap: 5%;
 }
 .button{
-  flex: calc(100%/3);
-  font-size: min(2rem, 7vw);
-  padding: calc(max(1rem, 10%) / 2);
-}
-.button:hover{
-  background-color: aliceblue;
+  flex-basis: 30%;
 }
 .button p {
+  font-size: 1.5rem;
   text-align: center;
-  margin: 0;
-}
-/* account for differences in resolution */
-#paper{
-  flex-basis: calc((100%/3) - 6.65%);
-}
-#rock{
-  flex-basis: calc(100%/2)
 }
 .button img {
   max-width: 100%;
