@@ -71,7 +71,6 @@ main > div {
 
 /* Start of styling for div which shows computer's "choice" */
 #computers {
-  background-color: darkgray;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
