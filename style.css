@@ -1,18 +1,90 @@
-html, body {
+html, :root, body {
   margin: 0;
   box-sizing: border-box;
+  font-family: 'Sigmar', Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  min-width: 200px;
 }
+
+/* Start of scoreboard styling */
+hgroup, h2, h3, p {
+  margin: 0;
+}
+#score{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  column-gap: 2rem;
+  background-color: burlywood;
+  padding: max(2.5vw, 10px);
+  padding-bottom: 0;
+}
+#score > h2 {
+  font-size: 2.5rem;
+}
+#score > h3 {
+  font-size: 1.5rem;
+}
+/* End of scoreboard styling */
+
+/* Start of main section styling */
 main{
   display: flex;
-  width: 100vw;  
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+main > div {
+  flex-basis: 40vw;
+}
+
+/* Start of styling for div where the player makes a pick */
+#players {
+  display: flex;
+  width: 100%;
 }
 .button{
   flex: calc(100%/3);
+  font-size: min(2rem, 7vw);
+  padding: calc(max(1rem, 10%) / 2);
+}
+.button:hover{
+  background-color: aliceblue;
+}
+.button p {
+  text-align: center;
+  margin: 0;
 }
 /* account for differences in resolution */
 #paper{
   flex-basis: calc((100%/3) - 6.65%);
 }
+#rock{
+  flex-basis: calc(100%/2)
+}
 .button img {
   max-width: 100%;
+}
+/* End of player div styling */
+
+/* Start of styling for div which shows computer's "choice" */
+#computers {
+  background-color: darkgray;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: 
+    "image" "text"
+    "image" "choice";
+}
+#computers img#desktop {
+  grid-area: "image";
+  width: 100%;
+}
+#computers img#choice {
+  grid-area: "choice";
+  width: 100%;
+  height: 100%;
 }

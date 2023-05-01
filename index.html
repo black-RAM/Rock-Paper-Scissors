@@ -6,20 +6,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rock Paper Scissors</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sigmar&display=swap" rel="stylesheet">
 </head>
 <body>
+  <hgroup id="score">
+    <h2>Scoreboard</h2>
+    <h3>You: <span id="player-score">0</span></h3>
+    <h3>Computer: <span id="computer-score">0</span></h3>
+  </hgroup>
+  
   <main>
-    <div class="button" id="rock">
-      <p>Rock</p>
-      <img src="assets/rock.png" alt="rock">
+    <div id="players">
+      <div class="button" id="rock">
+        <p>ROCK</p>
+        <img src="assets/rock.png" alt="rock">
+      </div>
+      <div class="button" id="paper">
+        <p>PAPER</p>
+        <img src="assets/paper.png" alt="paper">
+      </div>
+      <div class="button" id="scissors">
+        <p>SCISSORS</p>
+        <img src="assets/scissors.png" alt="scissors">
+      </div>
     </div>
-    <div class="button" id="paper">
-      <p>Paper</p>
-      <img src="assets/paper.png" alt="paper">
-    </div>
-    <div class="button" id="scissors">
-      <p>Scissors</p>
-      <img src="assets/scissors.png" alt="scissors">
+  
+    <div id="computers">
+      <img src="assets/computer.png" alt="a cartoon clip art of a desktop computer" id="desktop">
+      <p>Computer's choice:</p>
+      <img src="assets/paper.png" alt="" id="choice">
     </div>
   </main>
   <!-- <script src="algorithm.js" defer></script> -->
