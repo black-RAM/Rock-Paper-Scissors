@@ -63,10 +63,10 @@ main > div {
   max-width: 100%;
   scale: 1;
   transition-property: scale;
-  transition-duration: 0.5s;
+  transition-duration: 0.25s;
 }
 .button img:hover {
-  scale: 1.1;
+  scale: 1.05;
 }
 /* End of player div styling */
 
