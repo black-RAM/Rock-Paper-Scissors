@@ -4,6 +4,11 @@ html, :root, body {
   font-family: 'Sigmar', Arial, Helvetica, sans-serif;
   font-size: 20px;
   min-width: 200px;
+  /* Color Scheme */
+  --brown-1: hsl(0, 9%, 48%);
+  --brown-2: hsl(0, 28%, 77%);
+  --brown-3: hsl(0, 33%, 94%);
+  --brown-4: hsl(47, 58%, 95%);
 }
 
 /* Start of scoreboard styling */
@@ -16,7 +21,7 @@ hgroup, h2, h3, p {
   align-items: center;
   justify-content: space-around;
   column-gap: 2rem;
-  background-color: burlywood;
+  background-color: var(--brown-1);
   padding: max(2.5vw, 10px);
   padding-bottom: 0;
 }
@@ -32,34 +37,42 @@ hgroup, h2, h3, p {
 main{
   margin: 2rem 1rem;
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-wrap: wrap;
   gap: 2rem;
 }
 main > div {
-  flex: 400px;
+  flex: 380px;
+  border-radius: 2rem;
+  padding: 1rem;
 }
 
 /* Start of styling for div where the player makes a pick */
 #players {
   display: flex;
   gap: 5%;
+  background-color: var(--brown-3);
 }
 .button{
   flex-basis: 30%;
 }
 .button p {
-  font-size: 1.5rem;
+  font-size: min(4w, 1.5rem);
   text-align: center;
 }
 .button img {
   max-width: 100%;
+  scale: 1;
+  transition-property: scale;
+  transition-duration: 0.5s;
+}
+.button img:hover {
+  scale: 1.1;
 }
 /* End of player div styling */
 
 /* Start of styling for div which shows computer's "choice" */
 #computers {
+  background-color: var(--brown-4);
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-areas: "image" "choice";
@@ -73,5 +86,5 @@ main > div {
 }
 #computers #choice {
   max-width: 100%;
-  max-height: max(25vw, 10rem);
+  max-height: max(20vw, 10rem);
 }
