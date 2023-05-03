@@ -85,6 +85,17 @@ async function game() {
     setTimeout(() => {
       aside.remove();
     }, 2000)
+
+    // if multiple computer choice images exist, remove them
+    let cChoiceImgs = document.querySelectorAll("#computers > div > img");
+    if(cChoiceImgs.length > 1) {
+      // loop through nodelist, removing all but last
+      let i = 0
+      do {
+        cChoiceImgs[i].remove()
+        i++;
+      } while (i < (cChoiceImgs.length - 1));
+    }
   }
   // game conclusion
   if(pWins > cWins) {
