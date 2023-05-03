@@ -15,8 +15,15 @@ async function playRound () {
 
   // give computer choice a random element of options array
   const options = ["rock", "paper", "scissors"];
-  const cChoice = options[Math.floor(Math.random() * 3)];
+  const cChoice = options[Math.floor(Math.random() * options.length)];
 
+  //display computer choice image in the DOM
+  let img = document.createElement("img");
+  img.setAttribute('src', `assets/${cChoice}.png`)
+  img.setAttribute("id", "choice");
+  const imgParent = document.querySelector("#computers > div");
+  imgParent.appendChild(img);
+  
   // determine the winner. logic: rock > scissors, scissors > paper, paper > rock
   if(
     (pChoice === "rock" && cChoice === "scissors") ||
@@ -76,7 +83,3 @@ async function game() {
     alert("Well, it's a tie. Reload the page for the tie-breaker!")
   }
 }
-
- 
-//alert("Lets play a game of rock paper scissors. First to five!");
-//game();

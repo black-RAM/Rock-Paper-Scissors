@@ -118,10 +118,18 @@ main > div {
   grid-area: "image";
   max-width: 100%;
 }
+#computers p {
+  text-align: center;
+}
 #computers > div{
   grid-area: "choice";
+  display: flex;
+  flex-flow: column nowrap;
+  align-content: center;
+  justify-content: center;
 }
-#computers #choice {
+#computers > div > img#choice {
   max-width: 100%;
   max-height: max(20vw, 10rem);
+  object-fit: scale-down;
 }
