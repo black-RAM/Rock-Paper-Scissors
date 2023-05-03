@@ -11,6 +11,7 @@ html, :root, body {
   --brown-4: hsl(47, 58%, 95%);
   --green: hsla(95, 100%, 87%, 0.9);
   --red: hsla(346, 77%, 65%, 0.9);
+  --gray: hsla(40, 19%, 85%, 0.9);
 }
 
 /* Start of scoreboard styling */
@@ -44,17 +45,12 @@ aside {
   display: flex;
   justify-content: center;
 }
-@media screen and (min-width: 920px) {
-  aside {
-    position: static;
-    margin-top: 1rem;
-  }
-}
 #result {
   font-size: min(2rem, 6vw);
   text-align: center;
   border-radius: 1rem;
   padding: 1rem;
+  background-color: var(--gray);
 }
 #result.win {
   background-color: var(--green);

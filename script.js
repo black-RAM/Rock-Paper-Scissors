@@ -43,36 +43,48 @@ async function playRound () {
   }
 }
 
-playRound().then(result => console.log(result))
-
 async function game() {
   // initialise player wins and computre wins to 0
   let pWins = 0;
   let cWins = 0;
+
+  // DOM references setup
+  const body = document.body;
+  const main = document.getElementsByTagName("main")[0];
+  let aside = document.createElement("aside");
+  let para = document.createElement("p");
+  para.setAttribute("id", "result");
+  let pElem = document.getElementById("player-score");
+  let cElem = document.getElementById("computer-score")
+
   // while neither player wins or computer wins are over five
   while(!(pWins >= 5 || cWins >= 5)) {
     // call playRound and store its return value in result
     let result = await playRound(); 
-    // if result indicates the player quit,
-    if(result == "Thanks for playing!") {
-      // display result and return (terminate function)
-      alert(result);
-      return;
-    } else {
-      // otherwise if result begins with string "you win", increment player wins
-      if(result.startsWith("You win")) {
-        ++pWins;
-        /* prefixed the increment operator to increment and return player wins, 
-          which will be alerted at the end of each iteration of the loop.
-          I made this change when I realised the wins would update late. */
-      } 
-      // or else, if it starts with the string "you lose" increment computer wins
-      else if (result.startsWith("You lost")) {
-        ++cWins;
-      }
+
+    para.setAttribute("class", ""); // make classes empty
+    // Win? increment player wins
+    if(result.startsWith("You win")) {
+      ++pWins;
+      pElem.textContent = pWins;
+      para.classList.add("win");
+    } 
+    // Loss? increment computer wins
+    else if (result.startsWith("You lost")) {
+      ++cWins;
+      cElem.textContent = cWins;
+      para.classList.add("loss");
     }
-    // finally, display the result
-    alert(`${result}\n(Your wins: ${pWins}; computer wins: ${cWins})`);
+
+    // finally, display the results
+    para.textContent = result;
+    aside.appendChild(para);
+    body.insertBefore(aside, main);
+
+    // hide result paragraph popup
+    setTimeout(() => {
+      aside.remove();
+    }, 2000)
   }
   // game conclusion
   if(pWins > cWins) {
@@ -83,3 +95,4 @@ async function game() {
     alert("Well, it's a tie. Reload the page for the tie-breaker!")
   }
 }
+game();
