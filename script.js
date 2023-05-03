@@ -1,51 +1,42 @@
 // Play a round of rock paper scissors
-function playRound () {
-
-  // computer choice
-  const options = ["rock", "paper", "scissors"];
-  const cChoice = options[Math.floor(Math.random() * 3)];
-
-  // find out player choice
-  let pChoice; // initialise pChoice to undefined
-  let result = []; // initialise result to empty array
-
-  // create an arrray of references to selection div nodes
-  const elements = [document.getElementById("rock"), document.getElementById("paper"), document.getElementById("scissors")];
-  // add event listener to each node reference which, when clicked
-  elements.forEach(element => {
-    element.addEventListener("click", () => {
-      // makes pChoice its id
-      pChoice = element.id;
-      // pushes output of winner function to result
-      result.push(determineWinner()); 
+async function playRound () {
+  // Set up a Promise that resolves when the player makes a choice
+  const choicePromise = new Promise(resolve => {
+    const elements = [document.getElementById("rock"), document.getElementById("paper"), document.getElementById("scissors")];
+    elements.forEach(element => {
+      element.addEventListener("click", () => {
+        resolve(element.id);
+      });
     });
   });
 
+  // Wait for the player to make a choice
+  const pChoice = await choicePromise;
+
+  // give computer choice a random element of options array
+  const options = ["rock", "paper", "scissors"];
+  const cChoice = options[Math.floor(Math.random() * 3)];
+
   // determine the winner. logic: rock > scissors, scissors > paper, paper > rock
-  function determineWinner () {
-    if(
-      (pChoice === "rock" && cChoice === "scissors") ||
-      (pChoice === "scissors" && cChoice === "paper") ||
-      (pChoice === "paper" && cChoice === "rock")
-    ) {
-      return `You win! ${pChoice} beats ${cChoice}`;
-    } else if (
-      (pChoice === "scissors" && cChoice === "rock") ||
-      (pChoice === "paper" && cChoice === "scissors") ||
-      (pChoice === "rock" && cChoice === "paper")
-    ) {
-      return `You lost. ${cChoice} beats ${pChoice}. Sorry.`;
-    }
-    else {
-      return `It's a tie! You both got ${cChoice}`;
-    }
+  if(
+    (pChoice === "rock" && cChoice === "scissors") ||
+    (pChoice === "scissors" && cChoice === "paper") ||
+    (pChoice === "paper" && cChoice === "rock")
+  ) {
+    return `You win! ${pChoice} beats ${cChoice}`;
+  } else if (
+    (pChoice === "scissors" && cChoice === "rock") ||
+    (pChoice === "paper" && cChoice === "scissors") ||
+    (pChoice === "rock" && cChoice === "paper")
+  ) {
+    return `You lost. ${cChoice} beats ${pChoice}. Sorry.`;
   }
-  return result;
+  else {
+    return `It's a tie! You both got ${cChoice}`;
+  }
 }
 
-console.log(
-  playRound()
-);
+playRound().then(result => console.log(result))
 
 function game() {
   // initialise player wins and computre wins to 0
