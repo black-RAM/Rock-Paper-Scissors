@@ -38,14 +38,14 @@ async function playRound () {
 
 playRound().then(result => console.log(result))
 
-function game() {
+async function game() {
   // initialise player wins and computre wins to 0
   let pWins = 0;
   let cWins = 0;
   // while neither player wins or computer wins are over five
   while(!(pWins >= 5 || cWins >= 5)) {
     // call playRound and store its return value in result
-    let result = playRound();
+    let result = await playRound(); 
     // if result indicates the player quit,
     if(result == "Thanks for playing!") {
       // display result and return (terminate function)

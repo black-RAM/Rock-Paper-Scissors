@@ -9,6 +9,8 @@ html, :root, body {
   --brown-2: hsl(0, 28%, 77%);
   --brown-3: hsl(0, 33%, 94%);
   --brown-4: hsl(47, 58%, 95%);
+  --green: hsla(95, 100%, 87%, 0.9);
+  --red: hsla(346, 77%, 65%, 0.9);
 }
 
 /* Start of scoreboard styling */
@@ -32,6 +34,41 @@ hgroup, h2, h3, p {
   font-size: 1.5rem;
 }
 /* End of scoreboard styling */
+
+/* Styling result (nested in aside) */
+aside {
+  position: fixed;
+  z-index: 1;
+  top: 50vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+@media screen and (min-width: 920px) {
+  aside {
+    position: static;
+    margin-top: 1rem;
+  }
+}
+#result {
+  font-size: min(2rem, 6vw);
+  text-align: center;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+#result.win {
+  background-color: var(--green);
+}
+#result.win::after{
+  content: " 🙌";
+}
+#result.loss {
+  background-color: var(--red);
+}
+#result.loss::after {
+  content: " 😢";
+}
+/* End of styling result */
 
 /* Start of main section styling */
 main{
