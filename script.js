@@ -1,21 +1,28 @@
 // Play a round of rock paper scissors
 function playRound () {
+
   // computer choice
   const options = ["rock", "paper", "scissors"];
   const cChoice = options[Math.floor(Math.random() * 3)];
+
   // find out player choice
-  let pChoice;
+  let pChoice; // initialise pChoice to undefined
+  let result = []; // initialise result to empty array
+
+  // create an arrray of references to selection div nodes
   const elements = [document.getElementById("rock"), document.getElementById("paper"), document.getElementById("scissors")];
+  // add event listener to each node reference which, when clicked
   elements.forEach(element => {
     element.addEventListener("click", () => {
+      // makes pChoice its id
       pChoice = element.id;
-      let result = winner(); 
-      return result; // bug here
+      // pushes output of winner function to result
+      result.push(determineWinner()); 
     });
   });
-  // determine if player won or lost
-  // logic: rock > scissors, scissors > paper, paper > rock
-  function winner () {
+
+  // determine the winner. logic: rock > scissors, scissors > paper, paper > rock
+  function determineWinner () {
     if(
       (pChoice === "rock" && cChoice === "scissors") ||
       (pChoice === "scissors" && cChoice === "paper") ||
@@ -33,7 +40,12 @@ function playRound () {
       return `It's a tie! You both got ${cChoice}`;
     }
   }
+  return result;
 }
+
+console.log(
+  playRound()
+);
 
 function game() {
   // initialise player wins and computre wins to 0
@@ -73,6 +85,7 @@ function game() {
     alert("Well, it's a tie. Reload the page for the tie-breaker!")
   }
 }
+
  
 //alert("Lets play a game of rock paper scissors. First to five!");
 //game();
