@@ -3,7 +3,7 @@ html, :root, body {
   box-sizing: border-box;
   font-family: 'Sigmar', Arial, Helvetica, sans-serif;
   font-size: 20px;
-  min-width: 200px;
+  min-width: 330px;
   /* Color Scheme */
   --brown-1: hsl(0, 9%, 48%);
   --brown-2: hsl(0, 28%, 77%);
@@ -40,7 +40,7 @@ hgroup, h2, h3, p {
 aside {
   position: fixed;
   z-index: 1;
-  top: 50vh;
+  top: 40vh;
   width: 100vw;
   display: flex;
   justify-content: center;
@@ -63,6 +63,9 @@ aside {
 }
 #result.loss::after {
   content: " 😢";
+}
+#result.end {
+  width: 75vw;
 }
 /* End of styling result */
 

@@ -82,7 +82,7 @@ async function game() {
     body.insertBefore(aside, main);
 
     // hide result paragraph popup
-    setTimeout(() => {
+    var hideAside = setTimeout(() => {
       aside.remove();
     }, 2000)
 
@@ -98,12 +98,21 @@ async function game() {
     }
   }
   // game conclusion
+  clearTimeout(hideAside);
   if(pWins > cWins) {
-    alert(`Hurrah, you win! You won ${pWins} rounds while the computer won ${cWins} rounds.`)
+    para.innerText = `Hurrah! You win! You won ${pWins} rounds while the computer won ${cWins} rounds.`;
+    para.setAttribute("class", "win end");
+    aside.appendChild(para);
+    body.insertBefore(aside, main);
   } else if (pWins < cWins) {
-    alert(`Oops, You lose! The computer won ${cWins} rounds while you won ${pWins} rounds.`)
+    para.innerText = `Oops, You lose! The computer won ${cWins} rounds while you won ${pWins} rounds.`;
+    para.setAttribute("class", "loss end");
+    aside.appendChild(para);
+    body.insertBefore(aside, main);
   } else {
-    alert("Well, it's a tie. Reload the page for the tie-breaker!")
+    para.innerText = "Well, it's a tie. Reload the page for the tie-breaker!";
+    aside.appendChild(para);
+    body.insertBefore(aside, main);
   }
 }
 game();
