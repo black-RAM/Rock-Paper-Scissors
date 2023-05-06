@@ -12,12 +12,13 @@ html, :root, body {
   --green: hsla(95, 100%, 87%, 0.9);
   --red: hsla(346, 77%, 65%, 0.9);
   --gray: hsla(40, 19%, 85%, 0.9);
+  --blue: hsl(215, 73%, 16%);
 }
-
-/* Start of scoreboard styling */
-hgroup, h2, h3, p {
+/* For those margins no one asked for */
+hgroup, h2, h3, p, footer, ul {
   margin: 0;
 }
+/* Start of scoreboard styling */
 #score{
   display: flex;
   flex-wrap: wrap;
@@ -131,4 +132,21 @@ main > div {
   max-width: 100%;
   max-height: max(20vw, 10rem);
   object-fit: scale-down;
+}
+
+/* Footer */
+footer{
+  display: flex;
+  background-color: var(--blue);
+  color: var(--gray);
+  padding: 1.5rem;
+  font-size: 0.8rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+a {
+  color: hsl(215, 50%, 50%);
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: underline;
 }
